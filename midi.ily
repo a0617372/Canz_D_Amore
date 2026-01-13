@@ -1,7 +1,7 @@
 \version "2.24.4"
 
-rehearsalMidi = #
-(define-music-function
+rehearsalMidi = 
+#(define-music-function
  ( name midiInstrument lyrics ) (string? string? ly:music?)
  #{
    \unfoldRepeats <<
@@ -20,4 +20,5 @@ rehearsalMidi = #
        alignBelowContext = $name
      } \lyricsto $name $lyrics
    >>
- #} )
+ #} 
+ )

@@ -10,6 +10,7 @@
 \include "lyrics/BassoVerse.ily"
 \include "midi.ily"
 
+
 \header {
   title = "Canzonette d' Amore"
   subtitle = \markup {
@@ -35,19 +36,29 @@
       \consists "Ambitus_engraver" 
     } <<
       \global 
-      \CantoNotes
-      \addlyrics \CantoVerse
-    >>
+%      \CantoNotes
+%      \addlyrics \CantoVerse
+      \new Voice = "cantoN" { \CantoNotes }
+	 >>
+	  \new Lyrics \lyricsto "cantoN" \CantoVerseOne
+	  \new Lyrics \lyricsto "cantoN" \CantoVerseTwo
+	  \new Lyrics \lyricsto "cantoN" \CantoVerseThree
+	  
     \new Staff \with { 
-      midiInstrument = " piano "
+      midiInstrument = "piano"
       instrumentName = "Tenore"
       shortInstrumentName = "A."
       \consists "Ambitus_engraver"
     } <<
       \global
-      \TenoreNotes
-      \addlyrics \TenoreVerse
+%      \TenoreNotes
+%      \addlyrics \TenoreVerse
+      \new Voice ="tenorN" {\TenoreNotes}
     >>
+	  \new Lyrics \lyricsto "tenorN" \TenoreVerseOne
+	  \new Lyrics \lyricsto "tenorN" \TenoreVerseTwo
+	  \new Lyrics \lyricsto "tenorN" \TenoreVerseThree
+    
     \new Staff \with { 
       midiInstrument = "choir aahs"
       instrumentName = "Basso"
@@ -55,12 +66,14 @@
       \consists "Ambitus_engraver"      
     } <<
       \global
-      \BassoNotes
-      \addlyrics \BassoVerse
+%      \BassoNotes
+%      \addlyrics \BassoVerse
+      \new Voice ="bassoN" {\BassoNotes}
     >>
+	  \new Lyrics \lyricsto "bassoN" \BassoVerseOne
+	  \new Lyrics \lyricsto "bassoN" \BassoVerseTwo
+	  \new Lyrics \lyricsto "bassoN" \BassoVerseThree      
   >>
-
-
   \layout { 
     indent = 15\mm 
     \autoBeamOff 
@@ -68,24 +81,21 @@
     \override TupletNumber.direction = #UP
     \context { \ChoirStaff \consists "Span_bar_engraver" }
   }
-
-  \midi {
-  \tempo 4 = 100
-  }  
+  
 }
 
   \book {
   \bookOutputSuffix "Canto"
   \score {
-   \rehearsalMidi "Canto" "soprano sax" \CantoVerse
-    \midi { }
+   \rehearsalMidi "Canto" "soprano sax" \CantoVerseOne
+   \midi { }
    }
   }
 
   \book {
   \bookOutputSuffix "Tenore"
   \score {
-    \rehearsalMidi "Tenore" "tenor sax" \TenoreVerse
+    \rehearsalMidi "Tenore" "tenor sax" \TenoreVerseOne
     \midi { }
     }
   }
@@ -93,8 +103,7 @@
   \book {
   \bookOutputSuffix "Basso"
   \score {
-    \rehearsalMidi "Basso" "violin" \BassoVerse
+    \rehearsalMidi "Basso" "soprano sax" \BassoVerseOne
     \midi { }
     }
-
   }
