@@ -95,7 +95,7 @@
   \book {
   \bookOutputSuffix "Tenore"
   \score {
-    \rehearsalMidi "Tenore" "tenor sax" \TenoreVerseOne
+    \rehearsalMidi "Tenore" "alto sax" \TenoreVerseOne
     \midi { }
     }
   }
@@ -103,7 +103,7 @@
   \book {
   \bookOutputSuffix "Basso"
   \score {
-    \rehearsalMidi "Basso" "soprano sax" \BassoVerseOne
+    \rehearsalMidi "Basso" "tenor sax" \BassoVerseOne
     \midi { }
     }
   }
